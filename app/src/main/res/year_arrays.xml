@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name1">MyAndroidApp</string>
+    <string name="year_prompt">Choose a country</string>
+
+    <string-array name="year_arrays">
+        <item>Diner</item>
+        <item>Cater</item>
+
+    </string-array>
+
+</resources>
