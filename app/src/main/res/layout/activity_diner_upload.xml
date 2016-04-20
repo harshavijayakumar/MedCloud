@@ -44,7 +44,7 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
-            android:id="@+id/emailid" />
+            android:id="@+id/etDinerName" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,14 +55,9 @@
             android:layout_weight="0.24" />
 
         <EditText
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText"
-            android:layout_centerVertical="true"
-            android:layout_alignEnd="@+id/scrollView"
-            android:layout_toEndOf="@+id/textView2" />
+            android:id="@+id/etLocation" />
 
         <TextView
             android:layout_width="145dp"
@@ -74,7 +69,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3" />
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/etContactNumber" />
 
         <Button
             android:layout_width="133dp"

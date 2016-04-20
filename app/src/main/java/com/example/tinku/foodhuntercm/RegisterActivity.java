@@ -67,15 +67,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 String result = textView.getText().toString();
 
                                 if(result.equals("Diner")) {
-
-                                    Intent i = new Intent(getApplicationContext(), DinerUpload.class);
-                                    startActivity(i);
+                                    Intent intent = new Intent(getApplicationContext(), DinerUpload.class);
+                                    intent.putExtra("username", username);
+                                    startActivity(intent);
                                 }
 
                                 if(result.equals("Cater")) {
-
-                                    Intent i = new Intent(getApplicationContext(), CaterUpload.class);
-                                    startActivity(i);
+                                    Intent intent = new Intent(getApplicationContext(), CaterUpload.class);
+                                    intent.putExtra("username", username);
+                                    startActivity(intent);
                                 }
 
                               //  Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
