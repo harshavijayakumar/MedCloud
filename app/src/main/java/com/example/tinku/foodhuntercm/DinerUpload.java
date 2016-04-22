@@ -30,7 +30,7 @@ public class DinerUpload extends AppCompatActivity {
         final EditText location;
         final EditText contact;
 
-        dname = (EditText) findViewById(R.id.etDinerName);
+
         location = (EditText) findViewById(R.id.etLocation);
         contact = (EditText) findViewById(R.id.etContactNumber);
 
@@ -43,7 +43,7 @@ public class DinerUpload extends AppCompatActivity {
 
             public void onClick(View v) {
                 /* Switching to Register screen */
-                final String dinerName = dname.getText().toString();
+
                 final String dinerLocation = location.getText().toString();
                 final int dinerContact = Integer.parseInt(contact.getText().toString());
                 final Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -72,7 +72,7 @@ public class DinerUpload extends AppCompatActivity {
                         }
                     }
                 };
-                DinerUploadRequest dinerUploadRequest = new DinerUploadRequest(username, dinerName, dinerLocation, dinerContact, responseListener);
+                DinerUploadRequest dinerUploadRequest = new DinerUploadRequest(username, dinerLocation, dinerContact, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(DinerUpload.this);
                 queue.add(dinerUploadRequest);
             }

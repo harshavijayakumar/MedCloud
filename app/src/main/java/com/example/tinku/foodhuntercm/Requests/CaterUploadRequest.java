@@ -16,11 +16,11 @@ import java.util.Map;
 public class CaterUploadRequest extends StringRequest {
     private static final String CATERUPLOAD_REQUEST_URL = "http://www.nativebites.comxa.com/caterupload.php";
     private Map<String, String> params;
-    public CaterUploadRequest(String uname, String caterName, String caterLocation, String caterFood, float foodPrice, int caterContact, Response.Listener<String> listener){
+    public CaterUploadRequest(String uname, String foodtype, String caterLocation, String caterFood, float foodPrice, int caterContact, Response.Listener<String> listener){
         super(Method.POST, CATERUPLOAD_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("cusername", uname);
-        params.put("caterName"    ,  caterName);
+        params.put("foodtype"    ,  foodtype);
         params.put("caterLocation",  caterLocation);
         params.put("caterFood"    ,  caterFood);
         params.put("foodPrice", foodPrice + "");

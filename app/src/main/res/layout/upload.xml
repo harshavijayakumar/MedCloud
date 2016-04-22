@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Cater Name"
+            android:text="food_type"
             android:id="@+id/textView3" />
 
         <EditText android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
-            android:id="@+id/etCaterName" />
+            android:id="@+id/etFoodType" />
 
         <TextView
             android:layout_width="wrap_content"

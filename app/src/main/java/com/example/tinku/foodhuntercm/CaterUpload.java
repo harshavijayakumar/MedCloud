@@ -51,7 +51,8 @@ public class CaterUpload extends AppCompatActivity {
       private class UploadImage extends AsyncTask<Void, Void, Void> {
         Bitmap image;
         String name;
-          String uname;
+        String uname;
+
         public UploadImage(Bitmap image, String name, String uname){
             this.name = name;
             this.image = image;
@@ -61,6 +62,51 @@ public class CaterUpload extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Toast.makeText(getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+            final EditText foodType,location, foodName, price, contactNumber;
+            foodType = (EditText) findViewById(R.id.etFoodType);
+            location = (EditText) findViewById(R.id.etLocation);
+            foodName = (EditText) findViewById(R.id.etFood);
+            price = (EditText)findViewById(R.id.etPrice);
+            contactNumber = (EditText)findViewById(R.id.etContactNumber);
+            Intent intent = getIntent();
+            final String username = intent.getStringExtra("username");
+
+            final String foodtype = foodType.getText().toString();
+            final String caterLocation = location.getText().toString();
+            final String caterFood = foodName.getText().toString();
+            final float foodPrice = Float.parseFloat(price.getText().toString());
+            final int caterContact = Integer.parseInt(contactNumber.getText().toString());
+
+            final Response.Listener<String> responseListener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        boolean success = jsonResponse.getBoolean("success");
+                        if (success) {
+                            //   String name = jsonResponse.getString("name");
+                            Intent intent = new Intent(CaterUpload.this, SearchActivity.class);
+                            // intent.putExtra("name", name);
+                            // intent.putExtra("username", username);
+                            //  intent.putExtra("age", age);
+                            CaterUpload.this.startActivity(intent);
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CaterUpload.this);
+                            builder.setMessage("Cater Upload Failed")
+                                    .setNegativeButton("Retry", null)
+                                    .create()
+                                    .show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            };
+            CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, foodtype, caterLocation, caterFood, foodPrice, caterContact, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(CaterUpload.this);
+            queue.add(caterUploadRequest);
+
         }
 
         @Override
@@ -96,6 +142,7 @@ public class CaterUpload extends AppCompatActivity {
         HttpConnectionParams.setSoTimeout(httpRequestParams, 1000 * 30);
         return httpRequestParams;
     }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload);
@@ -103,17 +150,12 @@ public class CaterUpload extends AppCompatActivity {
         iv = (ImageView) findViewById(R.id.ivFood);
 
 
-        final EditText name,location, foodName, price, contactNumber;
-        name = (EditText) findViewById(R.id.etCaterName);
+        final EditText foodtype,location, foodName, price, contactNumber;
+        foodtype = (EditText) findViewById(R.id.etFoodType);
         location = (EditText) findViewById(R.id.etLocation);
         foodName = (EditText) findViewById(R.id.etFood);
         price = (EditText)findViewById(R.id.etPrice);
         contactNumber = (EditText)findViewById(R.id.etContactNumber);
-
-
-        Intent intent = getIntent();
-        final String username = intent.getStringExtra("username");
-
 
 
         btnCaterUpdate = (Button)findViewById(R.id.updatebutton);
@@ -121,7 +163,7 @@ public class CaterUpload extends AppCompatActivity {
 
             public void onClick(View v) {
                 // Switching to Register screen
-                final String caterName = name.getText().toString();
+                final String caterName = foodtype.getText().toString();
                 final String caterLocation = location.getText().toString();
                 final String caterFood = foodName.getText().toString();
                 final float foodPrice = Float.parseFloat(price.getText().toString());
@@ -130,35 +172,7 @@ public class CaterUpload extends AppCompatActivity {
                 Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
                 new UploadImage(image, foodName.getText().toString(), caterName).execute();
 
-                final Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                //   String name = jsonResponse.getString("name");
-                                Intent intent = new Intent(CaterUpload.this, SearchActivity.class);
-                                // intent.putExtra("name", name);
-                                // intent.putExtra("username", username);
-                                //  intent.putExtra("age", age);
-                                CaterUpload.this.startActivity(intent);
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(CaterUpload.this);
-                                builder.setMessage("Cater Upload Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
 
-                };
-                CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, caterName, caterLocation, caterFood, foodPrice, caterContact, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(CaterUpload.this);
-                queue.add(caterUploadRequest);
             }
         });
 
