@@ -67,11 +67,13 @@ public class MainActivity extends AppCompatActivity {
                             if (success) {
                                 if(type.equals("Diner")) {
                                     Intent intent = new Intent(getApplicationContext(), DinerUpload.class);
-                                    MainActivity.this.startActivity(intent);
+									intent.putExtra("username", username);
+                                    startActivity(intent);               
                                 }
                                 else if(type.equals("Cater")){
                                     Intent intent = new Intent(getApplicationContext(), CaterUpload.class);
-                                    MainActivity.this.startActivity(intent);
+									intent.putExtra("username", username);
+                                    startActivity(intent);
                                 }
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
