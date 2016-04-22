@@ -19,6 +19,7 @@ public class CaterUploadRequest extends StringRequest {
     public CaterUploadRequest(String uname, String caterName, String caterLocation, String caterFood, float foodPrice, int caterContact, Response.Listener<String> listener){
         super(Method.POST, CATERUPLOAD_REQUEST_URL, listener, null);
         params = new HashMap<>();
+        params.put("cusername", uname);
         params.put("caterName"    ,  caterName);
         params.put("caterLocation",  caterLocation);
         params.put("caterFood"    ,  caterFood);
