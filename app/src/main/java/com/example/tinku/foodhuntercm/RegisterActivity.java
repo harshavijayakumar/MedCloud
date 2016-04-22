@@ -24,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     ImageView iv;
     Button regbutton;
 
+
     EditText etName,etEmail,etPassword;
 
     @Override
@@ -38,10 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
         etEmail=(EditText)findViewById(R.id.reg_email);
         etPassword=(EditText)findViewById(R.id.reg_password);
 
-
-
-
-
         regbutton=(Button) findViewById(R.id.registerbutton);
         regbutton.setOnClickListener(new View.OnClickListener() {
 
@@ -49,9 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
                 final String username = etName.getText().toString();
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
+
                 Spinner mySpinner=(Spinner) findViewById(R.id.spinner2);
                 TextView textView = (TextView)mySpinner.getSelectedView();
-                String type = textView.getText().toString();
+                String type = "Diner";
                // final int age = Integer.parseInt(etAge.getText().toString());
 
                 Response.Listener<String> responseListener = new Response.Listener<String>(){
@@ -78,8 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
 
-                              //  Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                               // RegisterActivity.this.startActivity(intent);
+
                             }
                             else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -93,22 +90,21 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 };
+
+                String result = textView.getText().toString();
+
+                if(result.equals("Diner")) {
+                    type = "Diner";
+                }
+                else if(result.equals("Cater")) {
+                    type = "Cater";
+                }
+
                 RegisterRequest registerRequest = new RegisterRequest(email,type, username, password, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
-
                 // Switching to Register screen
-
             }
-
-
-
-
-
         });
-
-
-
-
     }
 }

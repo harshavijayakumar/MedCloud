@@ -63,14 +63,16 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
+                            String type = jsonResponse.getString("user");
                             if (success) {
-                                String name = jsonResponse.getString("name");
-                                //  int age = jsonResponse.getInt("age");
-                                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-                                intent.putExtra("name", name);
-                                intent.putExtra("username", username);
-                                //  intent.putExtra("age", age);
-                                MainActivity.this.startActivity(intent);
+                                if(type.equals("Diner")) {
+                                    Intent intent = new Intent(getApplicationContext(), DinerUpload.class);
+                                    MainActivity.this.startActivity(intent);
+                                }
+                                else if(type.equals("Cater")){
+                                    Intent intent = new Intent(getApplicationContext(), CaterUpload.class);
+                                    MainActivity.this.startActivity(intent);
+                                }
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                                 builder.setMessage("Login Failed")
@@ -92,19 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-
-
-
-
-
-
-
-
-
     }
-
-
-
 }
 
 

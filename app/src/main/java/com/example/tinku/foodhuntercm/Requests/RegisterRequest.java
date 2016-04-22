@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 public class RegisterRequest extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "http://www.nativebites.comxa.com/register.php";
     private Map<String, String> params;
-    public RegisterRequest(String email, String type, String username, String password, Response.Listener<String> listener){
+    public RegisterRequest(String email, String type, String username, String password,  Response.Listener<String> listener){
         super(Method.POST, REGISTER_REQUEST_URL,listener,null);
         params = new HashMap<>();
         params.put("email",email);
