@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -34,25 +35,25 @@ public class SearchActivity extends ListActivity {
     private static final String STAR_STATES = "listviewtipsandtricks:star_states";
     private boolean[] mStarStates;
     private  List list;
-    Intent intent = getIntent();
-    final String username = intent.getStringExtra("username");
-
 
         private AccessoriesAdapter mAdapter;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
+            Intent intent = getIntent();
+            final String username = intent.getStringExtra("username");
             super.onCreate(savedInstanceState);
             final Response.Listener<String> responseListener = new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response) {
                     try {
                         JSONArray jarry = new JSONArray(response);
-
-
                         if (true) {
+
+                            Log.d(response.toString(), "onResponse: ");
                     for (int i=0;i< jarry.length();i++)
                     {
+
                        JSONObject jobj= jarry.getJSONObject(i);
 
                         String price= jobj.getString("price");
@@ -63,8 +64,6 @@ public class SearchActivity extends ListActivity {
 
                         list.add(food_string);
                     }
-
-
                             }
                          else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
@@ -85,13 +84,10 @@ public class SearchActivity extends ListActivity {
             mAdapter = new AccessoriesAdapter();
             setListAdapter(mAdapter);
         }
-
         @Override
         protected void onSaveInstanceState(Bundle outState) {
             super.onSaveInstanceState(outState);
-
         }
-
         @Override
         protected void onListItemClick(ListView l, View v, int position, long id) {
            // showMessage(getString(R.string.you_want_info_about_format, CHEESES[position]));
