@@ -52,7 +52,18 @@ public class SearchActivity extends ListActivity {
 
                         if (true) {
                     for (int i=0;i< jarry.length();i++)
-                    list.add(jarry.get(i).toString());
+                    {
+                       JSONObject jobj= jarry.getJSONObject(i);
+
+                        String price= jobj.getString("price");
+                        String location= jobj.getString("location");
+                        String  food_type= jobj.getString("food_type");
+                        String  food_desc= jobj.getString("food_desc");
+                        String food_string= "$" + price +"\n"+  location + "\n" + food_type +"\n"+ food_desc;
+
+                        list.add(food_string);
+                    }
+
 
                             }
                          else {
