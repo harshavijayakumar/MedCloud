@@ -58,7 +58,7 @@ public class DinerUpload extends AppCompatActivity {
                                 // intent.putExtra("name", name);
                                 // intent.putExtra("username", username);
 
-                                //  intent.putExtra("age", age);
+                                 intent.putExtra("username", username);
                                 DinerUpload.this.startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(DinerUpload.this);

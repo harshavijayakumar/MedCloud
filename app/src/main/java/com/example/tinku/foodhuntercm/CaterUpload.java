@@ -89,6 +89,7 @@ public class CaterUpload extends AppCompatActivity {
                             // intent.putExtra("name", name);
                             // intent.putExtra("username", username);
                             //  intent.putExtra("age", age);
+                            intent.putExtra("username", username);
                             CaterUpload.this.startActivity(intent);
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(CaterUpload.this);
