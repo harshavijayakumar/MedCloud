@@ -10,12 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -156,11 +159,15 @@ public class SearchActivity extends ListActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
 
                 AccessoriesViewHolder holder = null;
+               // View subView = null;
 
                 if (convertView == null) {
 
                     Log.d(list.get(position).toString(), "positionsssss: ");
-                    convertView = getLayoutInflater().inflate(R.layout.searchstub, parent, false);
+                 //  setContentView(R.layout.search);
+                 //   convertView =getLayoutInflater().inflate(R.layout.search,parent,true);
+                    ListView framestub= (ListView)findViewById(R.id.list_view);
+                    convertView = getLayoutInflater().inflate(R.layout.searchstub,framestub ,false);
 
                     holder = new AccessoriesViewHolder();
                     holder.star = (CheckBox) convertView.findViewById(R.id.btn_star);
@@ -171,7 +178,7 @@ public class SearchActivity extends ListActivity {
 
                     convertView.setTag(holder);
                 } else {
-                    holder = (AccessoriesViewHolder) convertView.getTag();
+                    holder = (AccessoriesViewHolder)convertView.getTag();
                 }
 
                 holder.star.setChecked(mStarStates[position]);
