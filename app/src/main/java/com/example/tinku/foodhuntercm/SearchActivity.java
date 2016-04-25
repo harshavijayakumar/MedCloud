@@ -40,8 +40,9 @@ public class SearchActivity extends ListActivity {
     private boolean[] mStarStates;
     private  List<String> list;
     Bundle xx;
+    JSONArray jarry;
 
-        private AccessoriesAdapter mAdapter;
+    private AccessoriesAdapter mAdapter;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class SearchActivity extends ListActivity {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        JSONArray jarry = new JSONArray(response);
+                         jarry = new JSONArray(response);
                         if (true) {
 
                             Log.d(response.toString(), "onResponseeee: ");
@@ -196,6 +197,15 @@ public class SearchActivity extends ListActivity {
             @Override
             public void onClick(View v) {
                 // TODO Cyril: Not implemented yet!
+                final int position = getListView().getPositionForView(v);
+
+                Log.d(String.valueOf(position), "onClick: ");
+
+                if (position != ListView.INVALID_POSITION) {
+                //    showMessage(getString(R.string.you_want_to_buy_format, CHEESES[position]));
+                }
+
+
             }
         };
 
@@ -203,6 +213,9 @@ public class SearchActivity extends ListActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Cyril: Not implemented yet!
+
+
+
             }
         };
     }
