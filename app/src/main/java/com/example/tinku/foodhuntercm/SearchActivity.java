@@ -18,6 +18,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,15 +35,22 @@ public class SearchActivity extends ListActivity {
 
     private static final String STAR_STATES = "listviewtipsandtricks:star_states";
     private boolean[] mStarStates;
-    private  List list;
+    private  List<String> list;
+    Bundle xx;
 
         private AccessoriesAdapter mAdapter;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
+
+            super.onCreate(savedInstanceState);
+
+           xx=savedInstanceState;
+
             Intent intent = getIntent();
             final String username = intent.getStringExtra("username");
-            super.onCreate(savedInstanceState);
+            list = new ArrayList<String>();
+
             final Response.Listener<String> responseListener = new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response) {
@@ -50,7 +58,7 @@ public class SearchActivity extends ListActivity {
                         JSONArray jarry = new JSONArray(response);
                         if (true) {
 
-                            Log.d(response.toString(), "onResponse: ");
+                            Log.d(response.toString(), "onResponseeee: ");
                     for (int i=0;i< jarry.length();i++)
                     {
 
@@ -59,10 +67,21 @@ public class SearchActivity extends ListActivity {
                         String price= jobj.getString("price");
                         String location= jobj.getString("location");
                         String  food_type= jobj.getString("food_type");
-                        String  food_desc= jobj.getString("food_desc");
+                        String  food_desc= jobj.getString("food_description");
                         String food_string= "$" + price +"\n"+  location + "\n" + food_type +"\n"+ food_desc;
 
                         list.add(food_string);
+
+                        Log.d(list.get(i).toString(), "list item: ");
+
+
+                        if (xx != null) {
+                            mStarStates = xx.getBooleanArray(STAR_STATES);
+                        } else {
+                            mStarStates = new boolean[list.size()];
+                        }
+
+
                     }
                             }
                          else {
@@ -75,22 +94,39 @@ public class SearchActivity extends ListActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
+
+                    mAdapter = new AccessoriesAdapter();
+                    setListAdapter(mAdapter);
+
+
+
                 }
+
+
             };
             SearchRequest SearchRequest = new SearchRequest(username,responseListener);
             RequestQueue queue = Volley.newRequestQueue(SearchActivity.this);
             queue.add(SearchRequest);
 
-            mAdapter = new AccessoriesAdapter();
-            setListAdapter(mAdapter);
+
+
+
+
+
+
         }
+
+
+
         @Override
         protected void onSaveInstanceState(Bundle outState) {
             super.onSaveInstanceState(outState);
+            outState.putBooleanArray(STAR_STATES, mStarStates);
         }
         @Override
         protected void onListItemClick(ListView l, View v, int position, long id) {
-           // showMessage(getString(R.string.you_want_info_about_format, CHEESES[position]));
+          // showMessage(getString(R.string.you_want_info_about_format,list.get(position).toString()));
         }
 
         private static class AccessoriesViewHolder {
@@ -122,6 +158,8 @@ public class SearchActivity extends ListActivity {
                 AccessoriesViewHolder holder = null;
 
                 if (convertView == null) {
+
+                    Log.d(list.get(position).toString(), "positionsssss: ");
                     convertView = getLayoutInflater().inflate(R.layout.searchstub, parent, false);
 
                     holder = new AccessoriesViewHolder();

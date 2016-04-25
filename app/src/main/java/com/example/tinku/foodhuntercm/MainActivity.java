@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
                             String type = jsonResponse.getString("user");
                             if (success) {
                                 if(type.equals("Diner")) {
-                                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), DinerUpload.class);
 									intent.putExtra("username", username);
                                     startActivity(intent);               
                                 }
                                 else if(type.equals("Cater")){
-                                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), CaterUpload.class);
 									intent.putExtra("username", username);
                                     startActivity(intent);
                                 }
