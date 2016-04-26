@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.tinku.foodhuntercm.SearchActivity"
-    android:id="@+id/aboutus">
+    >
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ABOUT US"
-        android:id="@+id/button3"
+        android:id="@+id/aboutus"
         android:layout_above="@+id/customsearch"
         android:layout_alignEnd="@+id/customsearch" />
 
