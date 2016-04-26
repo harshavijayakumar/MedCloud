@@ -1,4 +1,4 @@
-package com.example.tinku.foodhuntercm;
+package com.example.tinku.foodhuntercm.Operations.UpdateInfo;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.tinku.foodhuntercm.R;
 
 public class Menu_CaterActivity extends AppCompatActivity {
 

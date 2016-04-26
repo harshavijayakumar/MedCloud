@@ -1,4 +1,4 @@
-package com.example.tinku.foodhuntercm;
+package com.example.tinku.foodhuntercm.Operations.UpdateInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.app.AlertDialog;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
+import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.DinerUploadRequest;
 
 

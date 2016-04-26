@@ -1,5 +1,8 @@
-package com.example.tinku.foodhuntercm;
+package com.example.tinku.foodhuntercm.Operations.JoinCommunity;
 
+import com.example.tinku.foodhuntercm.Operations.UpdateInfo.CaterUpload;
+import com.example.tinku.foodhuntercm.Operations.UpdateInfo.DinerUpload;
+import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.*;
 
 import android.app.AlertDialog;

@@ -1,24 +1,19 @@
-package com.example.tinku.foodhuntercm;
+package com.example.tinku.foodhuntercm.Operations.Search;
 
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.app.ListActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -26,7 +21,7 @@ import java.util.ArrayList;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.tinku.foodhuntercm.Requests.LoginRequest;
+import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.SearchRequest;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.example.tinku.foodhuntercm;
+package com.example.tinku.foodhuntercm.Operations.UpdateInfo;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,8 +20,9 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
+import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.CaterUploadRequest;
-import com.example.tinku.foodhuntercm.Requests.DinerUploadRequest;
 
 
 import org.apache.http.NameValuePair;

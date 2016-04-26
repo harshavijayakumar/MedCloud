@@ -42,7 +42,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Operations.JoinCommunity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,16 +50,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Operations.JoinCommunity.RegisterActivity"
             android:label="Register New Account" />
         <activity
-            android:name=".CaterUpload"
+            android:name=".Operations.UpdateInfo.CaterUpload"
             android:label="Cater information" />
         <activity
-            android:name=".DinerUpload"
+            android:name=".Operations.UpdateInfo.DinerUpload"
             android:label="Diner information" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".Operations.Search.SearchActivity"
             android:label="Search information" />
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -70,11 +70,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".Menu_CaterActivity"
+            android:name=".Operations.UpdateInfo.Menu_CaterActivity"
             android:label="@string/title_activity_menu__cater"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Menu_DinerActivity"
+            android:name=".Operations.UpdateInfo.Menu_DinerActivity"
             android:label="@string/title_activity_menu__diner"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

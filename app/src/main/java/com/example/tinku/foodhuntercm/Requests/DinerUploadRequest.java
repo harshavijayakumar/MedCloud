@@ -1,10 +1,7 @@
 package com.example.tinku.foodhuntercm.Requests;
 
-import android.widget.EditText;
-
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
-import com.example.tinku.foodhuntercm.DinerUpload;
 
 import java.util.HashMap;
 import java.util.Map;
