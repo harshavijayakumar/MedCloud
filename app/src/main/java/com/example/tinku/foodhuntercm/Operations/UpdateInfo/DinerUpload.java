@@ -55,7 +55,7 @@ public class DinerUpload extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
                                 //   String name = jsonResponse.getString("name");
-                                Intent intent = new Intent(DinerUpload.this, SearchActivity.class);
+                                Intent intent = new Intent(DinerUpload.this, Menu_DinerActivity.class);
                                 // intent.putExtra("name", name);
                                 // intent.putExtra("username", username);
 

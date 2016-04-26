@@ -63,7 +63,7 @@ public class FragmentThree extends Fragment {
 
 
 
-        View v = inflater.inflate(R.layout.aboutus, container, false);
+        View v = inflater.inflate(R.layout.searchoptions, container, false);
 
 
         return v;

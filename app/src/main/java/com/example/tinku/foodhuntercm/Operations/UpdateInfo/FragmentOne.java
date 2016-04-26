@@ -47,7 +47,7 @@ public class FragmentOne extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
+        Log.d("I am in fragment one", "onCreateView:");
 
         View v = inflater.inflate(R.layout.aboutus, container, false);
 

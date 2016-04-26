@@ -67,7 +67,7 @@ public class CaterUpload extends AppCompatActivity {
 
             Intent intent = getIntent();
             final String username = intent.getStringExtra("username");
-            Intent intent2 = new Intent(CaterUpload.this, SearchActivity.class);
+            Intent intent2 = new Intent(CaterUpload.this, Menu_CaterActivity.class);
 
             intent.putExtra("username", username);
             CaterUpload.this.startActivity(intent2);
@@ -150,7 +150,7 @@ public class CaterUpload extends AppCompatActivity {
                                 if(imageset == false) {
                                     Intent intent = getIntent();
                                     final String username = intent.getStringExtra("username");
-                                    Intent intent2 = new Intent(CaterUpload.this, SearchActivity.class);
+                                    Intent intent2 = new Intent(CaterUpload.this, Menu_CaterActivity.class);
 
                                     intent.putExtra("username", username);
                                     CaterUpload.this.startActivity(intent2);
