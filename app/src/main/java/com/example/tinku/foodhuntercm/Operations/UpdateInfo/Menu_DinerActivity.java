@@ -26,10 +26,6 @@ public class Menu_DinerActivity extends AppCompatActivity {
 
     }
 
-    public void init()
-    {
-
-    }
 
 
     public void onClick(View v) {

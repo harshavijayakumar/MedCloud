@@ -2,6 +2,8 @@ package com.example.tinku.foodhuntercm.Operations.JoinCommunity;
 
 import com.example.tinku.foodhuntercm.Operations.UpdateInfo.CaterUpload;
 import com.example.tinku.foodhuntercm.Operations.UpdateInfo.DinerUpload;
+import com.example.tinku.foodhuntercm.Operations.UpdateInfo.Menu_CaterActivity;
+import com.example.tinku.foodhuntercm.Operations.UpdateInfo.Menu_DinerActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.*;
 
@@ -69,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
                             String type = jsonResponse.getString("user");
                             if (success) {
                                 if(type.equals("Diner")) {
-                                    Intent intent = new Intent(getApplicationContext(), DinerUpload.class);
+                                    Intent intent = new Intent(getApplicationContext(), Menu_DinerActivity.class);
 									intent.putExtra("username", username);
                                     startActivity(intent);               
                                 }
                                 else if(type.equals("Cater")){
-                                    Intent intent = new Intent(getApplicationContext(), CaterUpload.class);
+                                    Intent intent = new Intent(getApplicationContext(), Menu_CaterActivity.class);
 									intent.putExtra("username", username);
                                     startActivity(intent);
                                 }
