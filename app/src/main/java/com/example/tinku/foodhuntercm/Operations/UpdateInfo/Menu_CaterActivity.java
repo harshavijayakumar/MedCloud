@@ -44,10 +44,11 @@ public class Menu_CaterActivity extends AppCompatActivity implements View.OnClic
 
         switch (v.getId()) {
             case R.id.aboutus:
+
                 FragmentManager FM= getFragmentManager();
                 FragmentTransaction FT= FM.beginTransaction();
                 FragmentOne Fone=new FragmentOne();
-                FT.add(R.id.customexps,Fone);
+                FT.add(R.id.customexps2,Fone);
                 FT.commit();
                 break;
             case R.id.updateinfo:

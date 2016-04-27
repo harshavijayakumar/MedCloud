@@ -44,7 +44,7 @@ public class Menu_DinerActivity extends AppCompatActivity implements View.OnClic
                 FragmentManager FM= getFragmentManager();
                 FragmentTransaction FT= FM.beginTransaction();
                 FragmentOne Fone=new FragmentOne();
-                FT.add(R.id.customexps,Fone);
+                FT.add(R.id.customexps2,Fone);
                 FT.commit();
                 break;
             case R.id.updateinfo:
