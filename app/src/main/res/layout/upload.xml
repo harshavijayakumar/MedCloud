@@ -30,7 +30,7 @@
 
 
         <ImageView android:id="@+id/ivFood"
-            android:layout_width="325dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_gravity="right" />
 
@@ -47,6 +47,44 @@
             android:layout_marginBottom="20dip"
             android:singleLine="true"
             android:id="@+id/etFoodType" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Indian Food"
+            android:id="@+id/indian"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:checked="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thai Food"
+            android:id="@+id/thai"
+            android:checked="false"
+            android:layout_alignTop="@+id/indian"
+            android:layout_toEndOf="@+id/indian"
+             />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chinese Food"
+            android:id="@+id/chinese"
+            android:checked="false"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="American Food"
+            android:id="@+id/american"
+            android:checked="false"
+            android:layout_alignTop="@+id/chinese"
+            android:layout_alignStart="@+id/thai" />
 
         <TextView
             android:layout_width="wrap_content"

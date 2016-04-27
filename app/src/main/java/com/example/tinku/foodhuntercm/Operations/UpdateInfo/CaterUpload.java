@@ -23,7 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.CaterUploadRequest;
-
+import android.widget.CheckBox;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -47,6 +47,7 @@ public class CaterUpload extends AppCompatActivity {
     ImageView iv;
     Button btnCaterUpdate;
      Button btnload;
+    CheckBox american, thai, indian, chinese;
     boolean imageset = false;
       private static final int RESULT_LOAD_IMAGE = 1;
       private static final String SERVER_ADDRESS = "http://www.nativebites.comxa.com/";
@@ -120,6 +121,12 @@ public class CaterUpload extends AppCompatActivity {
         foodName = (EditText) findViewById(R.id.etFood);
         price = (EditText)findViewById(R.id.etPrice);
         contactNumber = (EditText)findViewById(R.id.etContactNumber);
+
+        american = (CheckBox)findViewById(R.id.american);
+        indian = (CheckBox)findViewById(R.id.indian);
+        chinese = (CheckBox)findViewById(R.id.chinese);
+        thai = (CheckBox)findViewById(R.id.thai);
+
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
 
@@ -128,11 +135,23 @@ public class CaterUpload extends AppCompatActivity {
 
             public void onClick(View v) {
                 // Switching to Register screen
-                final String caterName = foodtype.getText().toString();
+               // final String caterName = foodtype.getText().toString();
+                String foodtype = "None";
                 final String caterLocation = location.getText().toString();
                 final String caterFood = foodName.getText().toString();
                 final float foodPrice = Float.parseFloat(price.getText().toString());
                 final int caterContact = Integer.parseInt(contactNumber.getText().toString());
+                final String caterName=username;
+
+                if(american.isChecked())
+                    foodtype=foodtype+"/american";
+                if(indian.isChecked())
+                    foodtype=foodtype+"/american";
+                if (thai.isChecked())
+                    foodtype=foodtype+"/thai";
+                if (chinese.isChecked())
+                    foodtype=foodtype+"/chinese";
+
                 if(imageset) {
                     Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
                     new UploadImage(image, foodName.getText().toString(), caterName).execute();
@@ -168,7 +187,7 @@ public class CaterUpload extends AppCompatActivity {
                     }
 
                 };
-                CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, caterName, caterLocation, caterFood, foodPrice, caterContact, responseListener);
+                CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, foodtype, caterLocation, caterFood, foodPrice, caterContact, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(CaterUpload.this);
                 queue.add(caterUploadRequest);
 
