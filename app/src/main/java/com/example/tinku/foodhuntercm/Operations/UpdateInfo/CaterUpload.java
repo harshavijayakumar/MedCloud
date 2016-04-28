@@ -146,7 +146,7 @@ public class CaterUpload extends AppCompatActivity {
                 if(american.isChecked())
                     foodtype=foodtype+"/american";
                 if(indian.isChecked())
-                    foodtype=foodtype+"/american";
+                    foodtype=foodtype+"/indian";
                 if (thai.isChecked())
                     foodtype=foodtype+"/thai";
                 if (chinese.isChecked())
