@@ -136,7 +136,7 @@ public class CaterUpload extends AppCompatActivity {
             public void onClick(View v) {
                 // Switching to Register screen
                // final String caterName = foodtype.getText().toString();
-                String foodtype = "None";
+                String foodtype = "/0";
                 final String caterLocation = location.getText().toString();
                 final String caterFood = foodName.getText().toString();
                 final float foodPrice = Float.parseFloat(price.getText().toString());
@@ -144,13 +144,13 @@ public class CaterUpload extends AppCompatActivity {
                 final String caterName=username;
 
                 if(american.isChecked())
-                    foodtype=foodtype+"/american";
+                    foodtype=foodtype+"/1";
                 if(indian.isChecked())
-                    foodtype=foodtype+"/indian";
+                    foodtype=foodtype+"/2";
                 if (thai.isChecked())
-                    foodtype=foodtype+"/thai";
+                    foodtype=foodtype+"/3";
                 if (chinese.isChecked())
-                    foodtype=foodtype+"/chinese";
+                    foodtype=foodtype+"/4";
 
                 if(imageset) {
                     Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();

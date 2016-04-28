@@ -48,12 +48,14 @@ public class SearchActivity extends ListActivity {
 
             Intent intent = getIntent();
             final String username = intent.getStringExtra("username");
+            final String food_type = intent.getStringExtra("food_type");
             list = new ArrayList<String>();
 
             final Response.Listener<String> responseListener = new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response) {
                     try {
+                        Log.d(response.toString(), "onResponse: ");
                          jarry = new JSONArray(response);
                         if (true) {
 
@@ -73,13 +75,11 @@ public class SearchActivity extends ListActivity {
 
                         Log.d(list.get(i).toString(), "list item: ");
 
-
                         if (xx != null) {
                             mStarStates = xx.getBooleanArray(STAR_STATES);
                         } else {
                             mStarStates = new boolean[list.size()];
                         }
-
 
                     }
                             }
@@ -94,25 +94,16 @@ public class SearchActivity extends ListActivity {
                         e.printStackTrace();
                     }
 
-
                     mAdapter = new AccessoriesAdapter();
                     setListAdapter(mAdapter);
-
-
 
                 }
 
 
             };
-            SearchRequest SearchRequest = new SearchRequest(username,responseListener);
+            SearchRequest SearchRequest = new SearchRequest(username,food_type,responseListener);
             RequestQueue queue = Volley.newRequestQueue(SearchActivity.this);
             queue.add(SearchRequest);
-
-
-
-
-
-
 
         }
 

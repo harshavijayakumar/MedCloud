@@ -60,8 +60,11 @@ public class Menu_DinerActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.customsearch:
                 FragmentManager FM3= getFragmentManager();
+                Bundle bundle= new Bundle();
+                bundle.putString("username",username);
                 FragmentTransaction FT3= FM3.beginTransaction();
                 FragmentThree F3=new FragmentThree();
+                F3.setArguments(bundle);
                 FT3.add(R.id.customexps,F3);
                 FT3.commit();
                 break;
