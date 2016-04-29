@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.tinku.foodhuntercm.Operations.Payment.GoogleWalletNB;
+import com.example.tinku.foodhuntercm.Operations.UpdateInfo.Menu_CaterActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.SearchRequest;
 
@@ -186,6 +188,17 @@ public class SearchActivity extends ListActivity {
                 final int position = getListView().getPositionForView(v);
 
                 Log.d(String.valueOf(position), "onClick: ");
+                Log.d(list.get(position).toString(), "list item: ");
+                String price=list.get(position).substring(1,4).toString();
+                Log.d(price, ":price");
+
+
+                Intent intent = getIntent();
+                final String username = intent.getStringExtra("username");
+                Intent intent2 = new Intent(SearchActivity.this,GoogleWalletNB.class);
+
+                intent.putExtra("username", username);
+                SearchActivity.this.startActivity(intent2);
 
                 if (position != ListView.INVALID_POSITION) {
                 //    showMessage(getString(R.string.you_want_to_buy_format, CHEESES[position]));
