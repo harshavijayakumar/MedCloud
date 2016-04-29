@@ -189,7 +189,8 @@ public class SearchActivity extends ListActivity {
 
                 Log.d(String.valueOf(position), "onClick: ");
                 Log.d(list.get(position).toString(), "list item: ");
-                String price=list.get(position).substring(1,4).toString();
+                String s=list.get(position).toString();
+                String price=s.substring(s.indexOf("$") + 1, s.indexOf("\n"));
                 Log.d(price, ":price");
 
 
@@ -198,6 +199,7 @@ public class SearchActivity extends ListActivity {
                 Intent intent2 = new Intent(SearchActivity.this,GoogleWalletNB.class);
 
                 intent.putExtra("username", username);
+                intent.putExtra("price",price);
                 SearchActivity.this.startActivity(intent2);
 
                 if (position != ListView.INVALID_POSITION) {

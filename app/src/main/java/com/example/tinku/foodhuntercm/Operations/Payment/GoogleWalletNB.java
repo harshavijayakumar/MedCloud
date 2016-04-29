@@ -39,6 +39,7 @@ public class GoogleWalletNB extends AppCompatActivity implements GoogleApiClient
     private SupportWalletFragment mWalletFragment;
 
     private SupportWalletFragment mXmlWalletFragment;
+    String price;
 
     private MaskedWallet mMaskedWallet;
     private FullWallet mFullWallet;
@@ -52,6 +53,10 @@ public class GoogleWalletNB extends AppCompatActivity implements GoogleApiClient
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        price = intent.getStringExtra("price");
+
 
         mWalletFragment = (SupportWalletFragment) getSupportFragmentManager().findFragmentByTag(WALLET_FRAGMENT_ID);
 
