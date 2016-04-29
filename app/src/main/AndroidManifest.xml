@@ -3,7 +3,6 @@
     package="com.example.tinku.foodhuntercm">
 
     <compatible-screens>
-
         <screen
             android:screenDensity="mdpi"
             android:screenSize="normal" />
@@ -28,8 +27,7 @@
             android:screenDensity="xhdpi"
             android:screenSize="xlarge" />
     </compatible-screens>
-
->>>>>>> 79dea973ee44a4a729cd281cf100bd5def0e4dad
+    >>>>>>> 79dea973ee44a4a729cd281cf100bd5def0e4dad
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -67,14 +65,18 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+
+
+
         <activity
             android:name=".Operations.UpdateInfo.Menu_CaterActivity"
             android:label="@string/title_activity_menu__cater"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Operations.UpdateInfo.Menu_DinerActivity"
             android:label="@string/title_activity_menu__diner"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Operations.Payment.GoogleWalletNB"></activity>
     </application>
 
 </manifest>

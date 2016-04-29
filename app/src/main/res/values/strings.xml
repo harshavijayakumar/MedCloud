@@ -2,4 +2,5 @@
     <string name="app_name">FoodHunterCM</string>
     <string name="title_activity_menu__cater">Menu_CaterActivity</string>
     <string name="title_activity_menu__diner">Menu_DinerActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
