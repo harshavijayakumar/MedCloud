@@ -49,7 +49,7 @@
             android:name=".Operations.JoinCommunity.RegisterActivity"
             android:label="Register New Account" />
         <activity
-            android:name=".Operations.UpdateInfo.CaterUpload"
+            android:name=".Operations.UpdateInfo.CaterUploadActivity"
             android:label="Cater information" />
         <activity
             android:name=".Operations.UpdateInfo.DinerUploadActivity"

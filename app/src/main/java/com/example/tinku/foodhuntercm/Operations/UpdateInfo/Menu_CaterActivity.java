@@ -48,12 +48,6 @@ public class Menu_CaterActivity extends AppCompatActivity implements View.OnClic
                 Intent intent = new Intent(getApplicationContext(), CaterUploadActivity.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
-              /*FragmentManager FM2= getFragmentManager();
-                FragmentTransaction FT2= FM2.beginTransaction();
-                FragmentTwo F2=new FragmentTwo();
-                FT2.add(R.id.customexps,F2);
-                FT2.commit();
-                */
                 break;
             case R.id.customsearch:
                 FragmentManager FM3= getFragmentManager();
