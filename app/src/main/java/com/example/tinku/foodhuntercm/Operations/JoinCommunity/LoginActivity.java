@@ -24,7 +24,7 @@ import com.example.tinku.foodhuntercm.adapter.BuildEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     ImageView iv;
     Button btlogin;
