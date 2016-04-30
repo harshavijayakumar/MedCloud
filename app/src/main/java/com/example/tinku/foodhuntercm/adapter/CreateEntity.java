@@ -1,10 +1,9 @@
 package com.example.tinku.foodhuntercm.adapter;
 
+/* Import appropriate libraries */
 import android.content.Context;
 
-import com.example.tinku.foodhuntercm.Entities.User;
-
-/* CreateUser interface for building and printing User object */
+/* CreateUser interface for register and login actions */
 public interface CreateEntity {
     public void registerUser(String username, String password, String email, String type, Context registerContext);
     public void loginUser(String username, String password,Context loginContext);

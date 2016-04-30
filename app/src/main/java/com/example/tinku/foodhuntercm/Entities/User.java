@@ -1,12 +1,11 @@
 package com.example.tinku.foodhuntercm.Entities;
 
-import java.util.ArrayList;
-
 /**
  * Created by sandeep on 4/28/2016.
  */
-public class User {
 
+/* Class for handling user information */
+public class User {
     private String username;
     private String password;
     private String type;
@@ -55,5 +54,4 @@ public class User {
     }
 
     public String getUserContact(){ return contactNumber;}
-
 }

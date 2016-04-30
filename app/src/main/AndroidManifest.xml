@@ -52,7 +52,7 @@
             android:name=".Operations.UpdateInfo.CaterUpload"
             android:label="Cater information" />
         <activity
-            android:name=".Operations.UpdateInfo.DinerUpload"
+            android:name=".Operations.UpdateInfo.DinerUploadActivity"
             android:label="Diner information" />
         <activity
             android:name=".Operations.Search.SearchActivity"
@@ -73,7 +73,7 @@
             android:name=".Operations.UpdateInfo.Menu_DinerActivity"
             android:label="@string/title_activity_menu__diner"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Operations.Payment.GoogleWalletNB"></activity>
+        <activity android:name=".Operations.Payment.GoogleWalletNBActivity"></activity>
     </application>
 
 </manifest>

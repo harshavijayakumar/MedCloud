@@ -1,5 +1,6 @@
 package com.example.tinku.foodhuntercm.Operations.UpdateInfo;
 
+/* Import appropriate libraries */
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -8,50 +9,47 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
-
-
 import com.example.tinku.foodhuntercm.R;
 
+/* Menu options screen for diner */
 public class Menu_DinerActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /* Variable for handling diner menu activity */
     Button Aboutus,Updateinfo, Search;
     String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+         /* Set the content view to Diner menu */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_diner);
         Intent intent = getIntent();
-         username = intent.getStringExtra("username");
-       // iv=(ImageView)findViewById(R.id.imageView);
-       // iv.setImageResource(R.drawable.pic);
-        Log.d(" i am in Fragoneone", "onClick: ");
+        username = intent.getStringExtra("username");
         Aboutus = (Button)findViewById(R.id.aboutus);
         Updateinfo = (Button) findViewById(R.id.updateinfo);
         Search = (Button) findViewById(R.id.customsearch);
-
     }
+
     public void init()
     {
-
+        //Nothing to do
     }
 
-
+    /* On click of the view, jump to appropriate fragments */
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.aboutus:
                 FragmentManager FM= getFragmentManager();
                 FragmentTransaction FT= FM.beginTransaction();
-                FragmentOne Fone=new FragmentOne();
+                AboutUsFragment Fone=new AboutUsFragment();
                 FT.add(R.id.customexps2,Fone);
                 FT.commit();
                 break;
             case R.id.updateinfo:
-                Intent intent = new Intent(getApplicationContext(), DinerUpload.class);
+                Intent intent = new Intent(getApplicationContext(), DinerUploadActivity.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
-               /* FragmentManager FM2= getFragmentManager();
+               /*FragmentManager FM2= getFragmentManager();
                 FragmentTransaction FT2= FM2.beginTransaction();
                 FragmentTwo F2=new FragmentTwo();
                 FT2.add(R.id.customexps,F2);
@@ -63,17 +61,11 @@ public class Menu_DinerActivity extends AppCompatActivity implements View.OnClic
                 Bundle bundle= new Bundle();
                 bundle.putString("username",username);
                 FragmentTransaction FT3= FM3.beginTransaction();
-                FragmentThree F3=new FragmentThree();
+                SearchOptionFragment F3=new SearchOptionFragment();
                 F3.setArguments(bundle);
                 FT3.add(R.id.customexps,F3);
                 FT3.commit();
                 break;
-
         }
-
-
-
     }
-
-
 }

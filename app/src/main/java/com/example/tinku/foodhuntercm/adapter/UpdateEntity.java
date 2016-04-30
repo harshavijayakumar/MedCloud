@@ -1,8 +1,9 @@
 package com.example.tinku.foodhuntercm.adapter;
 
+/* Import appropriate libraries */
 import android.content.Context;
 
-/* Update user interface */
+/* Interface for update of cater and diner information */
 public interface UpdateEntity {
     public void updateDinerInfo(String username, String userloc, int usercontact,Context dinerCtxt);
     public void updateCaterInfo(String username,String foodType,

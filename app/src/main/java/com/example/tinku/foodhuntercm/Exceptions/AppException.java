@@ -1,9 +1,14 @@
 package com.example.tinku.foodhuntercm.Exceptions;
 
+/* Import appropriate libraries */
 import com.example.tinku.foodhuntercm.adapter.FixApp;
+
+
 /**
  * Created by sandeep on 4/29/2016.
  */
+
+/* App exception class for handling exceptions in the application */
 public class AppException extends Exception implements FixApp  {
     private int errorNumber;
     private String errorMessage;
@@ -24,5 +29,4 @@ public class AppException extends Exception implements FixApp  {
     public int getErrorNumber(){
         return errorNumber;
     }
-
 }

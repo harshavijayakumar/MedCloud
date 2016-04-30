@@ -1,12 +1,14 @@
 package com.example.tinku.foodhuntercm.Entities;
 
+/* Import appropriate libraries */
 import android.graphics.Bitmap;
 
-import java.util.ArrayList;
 
 /**
  * Created by sandeep on 4/28/2016.
  */
+
+/* Class for handling food information */
 public class Food {
     String fname;
     String fdescription;
