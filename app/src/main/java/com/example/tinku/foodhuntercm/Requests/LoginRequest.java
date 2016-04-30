@@ -2,6 +2,7 @@ package com.example.tinku.foodhuntercm.Requests;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.tinku.foodhuntercm.Entities.User;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,6 @@
 package com.example.tinku.foodhuntercm.Operations.UpdateInfo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.DinerUploadRequest;
+import com.example.tinku.foodhuntercm.adapter.BuildEntity;
 
 
 import org.json.JSONException;
@@ -44,38 +46,10 @@ public class DinerUpload extends AppCompatActivity {
 
             public void onClick(View v) {
                 /* Switching to Register screen */
-
                 final String dinerLocation = location.getText().toString();
                 final int dinerContact = Integer.parseInt(contact.getText().toString());
-                final Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                //   String name = jsonResponse.getString("name");
-                                Intent intent = new Intent(DinerUpload.this, Menu_DinerActivity.class);
-                                // intent.putExtra("name", name);
-                                // intent.putExtra("username", username);
-
-                                 intent.putExtra("username", username);
-                                DinerUpload.this.startActivity(intent);
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(DinerUpload.this);
-                                builder.setMessage("Diner Upload Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                DinerUploadRequest dinerUploadRequest = new DinerUploadRequest(username, dinerLocation, dinerContact, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(DinerUpload.this);
-                queue.add(dinerUploadRequest);
+                BuildEntity usr = new BuildEntity();
+                usr.updateDinerInfo(username, dinerLocation, dinerContact, getApplicationContext());
             }
         });
 

@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.Requests.CaterUploadRequest;
+import com.example.tinku.foodhuntercm.adapter.BuildEntity;
 import android.widget.CheckBox;
 
 import org.apache.http.NameValuePair;
@@ -152,46 +153,16 @@ public class CaterUpload extends AppCompatActivity {
                 if (chinese.isChecked())
                     foodtype=foodtype+"/4";
 
+                Intent intent = getIntent();
+                final String username = intent.getStringExtra("username");
+
                 if(imageset) {
                     Bitmap image = ((BitmapDrawable) iv.getDrawable()).getBitmap();
-                    new UploadImage(image, foodName.getText().toString(), caterName).execute();
+                    new UploadImage(image, foodName.getText().toString(), username).execute();
                 }
 
-
-                final Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                //   String name = jsonResponse.getString("name");
-                                if(imageset == false) {
-                                    Intent intent = getIntent();
-                                    final String username = intent.getStringExtra("username");
-                                    Intent intent2 = new Intent(CaterUpload.this, Menu_CaterActivity.class);
-
-                                    intent.putExtra("username", username);
-                                    CaterUpload.this.startActivity(intent2);
-                                }
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(CaterUpload.this);
-                                builder.setMessage("Cater Upload Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                };
-                CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, foodtype, caterLocation, caterFood, foodPrice, caterContact, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(CaterUpload.this);
-                queue.add(caterUploadRequest);
-
-
+                BuildEntity usr = new BuildEntity();
+                usr.updateCaterInfo(username, foodtype, caterLocation, caterFood, foodPrice, caterContact, imageset, getApplicationContext());
             }
         });
 
