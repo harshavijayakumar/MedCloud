@@ -5,9 +5,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
-/**
- * Created by sandeep on 4/19/2016.
- */
+
 /* Caterupload request to server */
 public class CaterUploadRequest extends StringRequest {
     private static final String CATERUPLOAD_REQUEST_URL = "http://www.nativebites.comxa.com/caterupload.php";

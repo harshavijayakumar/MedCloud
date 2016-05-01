@@ -24,7 +24,6 @@ public class DinerUploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diner_upload);
 
         /* Get the ids of the resources */
-        final EditText dname;
         final EditText location;
         final EditText contact;
         location = (EditText) findViewById(R.id.etLocation);
@@ -38,7 +37,7 @@ public class DinerUploadActivity extends AppCompatActivity {
         /* Listen to button click on diner update */
         btDinerUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /* Get the diner information */
+               /* Get the diner information */
                 final String dinerLocation = location.getText().toString();
                 final int dinerContact = Integer.parseInt(contact.getText().toString());
 

@@ -3,11 +3,6 @@ package com.example.tinku.foodhuntercm.Exceptions;
 /* Import appropriate libraries */
 import com.example.tinku.foodhuntercm.adapter.FixApp;
 
-
-/**
- * Created by sandeep on 4/29/2016.
- */
-
 /* App exception class for handling exceptions in the application */
 public class AppException extends Exception implements FixApp  {
     private int errorNumber;
@@ -22,11 +17,12 @@ public class AppException extends Exception implements FixApp  {
 
     /* fix problem by inputting from the console */
     public String genericexceptionfix() {
-        return null;
+        // input the new file name from the console
+        if (errorNumber == 0) {
+            return null;
+        } else {
+            return errorMessage;
+        }
     }
 
-    /* Get the error number information for exception handling */
-    public int getErrorNumber(){
-        return errorNumber;
-    }
 }

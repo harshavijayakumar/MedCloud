@@ -1,6 +1,7 @@
 package com.example.tinku.foodhuntercm.Operations.JoinCommunity;
 
 /* Import appropriate libraries */
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
 import com.example.tinku.foodhuntercm.R;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,6 @@ public class RegisterActivity extends AppCompatActivity {
     /* Variables for handling Register activity */
     ImageView iv;
     Button regbutton;
-    boolean result;
     EditText etName,etEmail,etPassword;
 
     @Override
@@ -30,8 +30,17 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.register);
 
         /* Get the ids of the resources */
-        iv=(ImageView)findViewById(R.id.imageview);
-        iv.setImageResource(R.drawable.logo);
+        try {
+            iv = (ImageView) findViewById(R.id.imageview);
+            if(iv == null){
+                throw  new AppException(1, "Missing image data");
+            }
+            iv.setImageResource(R.drawable.logo);
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
+
         etName=(EditText)findViewById(R.id.reg_fullname);
         etEmail=(EditText)findViewById(R.id.reg_email);
         etPassword=(EditText)findViewById(R.id.reg_password);
@@ -49,18 +58,28 @@ public class RegisterActivity extends AppCompatActivity {
                 final String username = etName.getText().toString();
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
-                Spinner mySpinner=(Spinner) findViewById(R.id.spinner2);
-                TextView textView = (TextView)mySpinner.getSelectedView();
-                final String spinnerType = textView.getText().toString();
 
-                /*
-                 * Build entity is an abstraction created from application
-                 * perspective which hides the details about implementation
-                 * of requests. This way user has to just has to call the
-                 * APIs provided to them with proper parameters.
-                 */
-                BuildEntity usr = new BuildEntity();
-                usr.registerUser(username, password, email,spinnerType,getApplicationContext());
+                try {
+                    Spinner mySpinner=(Spinner) findViewById(R.id.spinner2);
+                    if(mySpinner == null){
+                        throw  new AppException(1, "Missing spinner information");
+                    }
+                    TextView textView = (TextView)mySpinner.getSelectedView();
+                    final String spinnerType = textView.getText().toString();
+                     /*
+                      * Build entity is an abstraction created from application
+                      * perspective which hides the details about implementation
+                      * of requests. This way user has to just has to call the
+                      * APIs provided to them with proper parameters.
+                      */
+                    BuildEntity usr = new BuildEntity();
+                    usr.registerUser(username, password, email,spinnerType,getApplicationContext());
+                }
+                catch(AppException e){
+                    e.genericexceptionfix();
+                }
+
+
             }
         });
     }

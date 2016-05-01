@@ -6,9 +6,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by sandeep on 4/19/2016.
- */
 /* Diner upload request to server */
 public class DinerUploadRequest extends StringRequest {
     private static final String DINERUPLOAD_REQUEST_URL = "http://www.nativebites.comxa.com/dinerupload.php";

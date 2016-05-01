@@ -4,7 +4,6 @@ package com.example.tinku.foodhuntercm.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import java.util.LinkedHashMap;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -22,21 +21,11 @@ import org.json.JSONObject;
 public abstract class ProxyLayer {
 
     /* Variable for handling different operations of the application */
-    private static User usrObj;
-    private static User foodObj;
-    private static LinkedHashMap<String, User> userHash = new LinkedHashMap<String, User>();
-    private static LinkedHashMap<String, User> foodHash = new LinkedHashMap<String, User>();
-    private boolean reqSts;
     private boolean result;
-
-    public boolean getReqSts(){return reqSts;}
-
-    public User getUserObj(String name){
-        return userHash.get(name);
-    }
 
     /* Register user operation */
 	public void registerUser(String username, String password, String email, String type, Context registerContext){
+        User usrObj;
         usrObj = new User();
 		usrObj.setUserRegisterInfo(username, password, email, type);
         final Context lclContext = registerContext;
@@ -89,7 +78,6 @@ public abstract class ProxyLayer {
     public void loginUser(String username, String password,Context loginContext){
         final Context lclCtxt = loginContext;
         final String usrname = username;
-        final String passwd = password;
 
         /* Send the request to the server */
         final Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -126,7 +114,7 @@ public abstract class ProxyLayer {
         };
 
         /* Add the HTTP request to queue and send to server */
-        LoginRequest loginRequest = new LoginRequest(usrname, passwd, responseListener);
+        LoginRequest loginRequest = new LoginRequest(usrname, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(lclCtxt);
         queue.add(loginRequest);
     }
@@ -134,8 +122,6 @@ public abstract class ProxyLayer {
     /* Update diner information operation */
     public void updateDinerInfo(String username, String userloc, int usercontact, Context DinerUploadCtxt){
         final String usrname = username;
-        final String usrlocation = userloc;
-        final int usrcontact = usercontact;
         final Context lclContext = DinerUploadCtxt;
         /* Send the request to the server */
         final Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -164,7 +150,7 @@ public abstract class ProxyLayer {
         };
 
         /* Add the HTTP request to queue and send to server */
-        DinerUploadRequest dinerUploadRequest = new DinerUploadRequest(username, usrlocation, usrcontact, responseListener);
+        DinerUploadRequest dinerUploadRequest = new DinerUploadRequest(username, userloc, usercontact, responseListener);
         RequestQueue queue = Volley.newRequestQueue(lclContext);
         queue.add(dinerUploadRequest);
     }
@@ -172,11 +158,6 @@ public abstract class ProxyLayer {
     /* Update cater information operation */
     public void updateCaterInfo(String username, String foodType, String userloc, String foodDesc, float price, int usercontact, boolean imageset, Context caterCtxt){
         final String fusername = username;
-        final String ffoodType = foodType;
-        final String fuserloc = userloc;
-        final String ffoodDesc = foodDesc;
-        final float fprice = price;
-        final int fusercontact = usercontact;
         final boolean fimgeset = imageset;
         final Context lclCtxt = caterCtxt;
 
@@ -189,7 +170,7 @@ public abstract class ProxyLayer {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        if(fimgeset == false) {
+                        if(!fimgeset) {
                             Intent intent = new Intent(lclCtxt, Menu_CaterActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("username", fusername);
@@ -210,7 +191,7 @@ public abstract class ProxyLayer {
         };
 
         /* Add the HTTP request to queue and send to server */
-        CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, ffoodType,  fuserloc, ffoodDesc, fprice, fusercontact, responseListener);
+        CaterUploadRequest caterUploadRequest = new CaterUploadRequest(username, foodType,  userloc, foodDesc, price, usercontact, responseListener);
         RequestQueue queue = Volley.newRequestQueue(lclCtxt);
         queue.add(caterUploadRequest);
     }

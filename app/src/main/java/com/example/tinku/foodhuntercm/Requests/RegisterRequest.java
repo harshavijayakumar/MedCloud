@@ -7,9 +7,6 @@ import com.example.tinku.foodhuntercm.Entities.User;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by sandeep on 4/15/2016.
- */
 /* Register user request to server */
 public class RegisterRequest extends StringRequest {
     private static final String REGISTER_REQUEST_URL = "http://www.nativebites.comxa.com/register.php";

@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,6 @@ import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
 import com.example.tinku.foodhuntercm.R;
 import android.widget.*;
 
-/**
- * Created by tinku on 4/2/16.
- */
 /* Fragment for showing search options on the screen */
 public class SearchOptionFragment extends Fragment {
     Button search;

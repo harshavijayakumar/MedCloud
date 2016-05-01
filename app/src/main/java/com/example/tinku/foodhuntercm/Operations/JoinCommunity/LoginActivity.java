@@ -1,6 +1,7 @@
 package com.example.tinku.foodhuntercm.Operations.JoinCommunity;
 
 /* Import appropriate libraries */
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
 import com.example.tinku.foodhuntercm.R;
 import android.widget.ImageView;
 import android.support.v7.app.AppCompatActivity;
@@ -28,22 +29,39 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /* Get the ids of the resources */
-        iv=(ImageView)findViewById(R.id.imageview);
-        iv.setImageResource(R.drawable.logo);
+        try {
+            iv = (ImageView) findViewById(R.id.imageview);
+            if(iv == null){
+                throw  new AppException(1, "Missing image data");
+            }
+            iv.setImageResource(R.drawable.logo);
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
+
         btlogin= (Button)findViewById(R.id.btnLogin);
         etUsername=(EditText)findViewById(R.id.username);
         etPassword=(EditText)findViewById(R.id.pwd);
-        TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
 
-        /* The user can choose to register if he is a first time user of application */
-        registerScreen.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                /* On click of register, start an Intent to switch to register user screen */
-                Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(i);
+
+        try {
+            TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
+            if(registerScreen == null){
+                throw  new AppException(2, "Missing registration information");
             }
-        });
-
+             /* The user can choose to register if he is a first time user of application */
+            registerScreen.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                /* On click of register, start an Intent to switch to register user screen */
+                    Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
 
         /* Listen to click event on Login button */
         btlogin.setOnClickListener(new View.OnClickListener(){
@@ -65,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                  */
                 BuildEntity entity = new BuildEntity();
                 entity.loginUser(username, password, getApplicationContext());
-            };
+            }
         });
     }
 }

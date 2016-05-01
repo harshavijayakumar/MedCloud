@@ -30,17 +30,12 @@ import org.apache.http.params.HttpParams;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-/**
- * Created by sandeep on 4/12/2016.
- */
-
 /* Cater upload activity screen for the application */
 public class CaterUploadActivity extends AppCompatActivity {
 
     /* Variables for handling cater upload activity */
     ImageView iv;
     Button btnCaterUpdate;
-    Button btnload;
     CheckBox american, thai, indian, chinese;
     boolean imageset = false;
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -99,6 +94,7 @@ public class CaterUploadActivity extends AppCompatActivity {
                 client.execute(post);
             }
             catch(Exception e){
+                e.printStackTrace();
             }
             return null;
         }

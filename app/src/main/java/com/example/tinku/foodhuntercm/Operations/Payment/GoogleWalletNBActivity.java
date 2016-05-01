@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,11 +35,8 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
 
     /* Variables for handling Payment activity */
     private GoogleApiClient mGoogleApiClient;
-    private SupportWalletFragment mWalletFragment;
-    private SupportWalletFragment mXmlWalletFragment;
     String price;
     private MaskedWallet mMaskedWallet;
-    private FullWallet mFullWallet;
     public static final int MASKED_WALLET_REQUEST_CODE = 888;
     public static final int FULL_WALLET_REQUEST_CODE = 889;
     public static final String WALLET_FRAGMENT_ID = "wallet_fragment";
@@ -46,7 +44,7 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        SupportWalletFragment mWalletFragment;
         /* Create layout of Payment */
         super.onCreate(savedInstanceState);
 
@@ -114,14 +112,12 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return ( (id == R.id.action_settings)  ||(super.onOptionsItemSelected(item)));
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        FullWallet mFullWallet;
         /* Get the result of the activity here */
         super.onActivityResult(requestCode,resultCode,data);
 
@@ -133,6 +129,8 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
                                 data.getParcelableExtra(WalletConstants.EXTRA_MASKED_WALLET);
                         break;
                     case Activity.RESULT_CANCELED:
+                        Log.d("CT", "RESULT CANCELLED");
+                        Toast.makeText(this, "An Error Occurred", Toast.LENGTH_LONG).show();
                         break;
                     default:
                         Toast.makeText(this, "An Error Occurred", Toast.LENGTH_LONG).show();
@@ -144,7 +142,7 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
                     case Activity.RESULT_OK:
                         mFullWallet =
                                 data.getParcelableExtra(WalletConstants.EXTRA_FULL_WALLET);
-                        Toast.makeText(this, mFullWallet.getProxyCard().getPan().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, mFullWallet.getProxyCard().getPan(), Toast.LENGTH_LONG).show();
 
                         Wallet.Payments.notifyTransactionStatus(mGoogleApiClient,
                                 generateNotifyTransactionStatusRequest(mFullWallet.getGoogleTransactionId(),
@@ -173,8 +171,7 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
 
     /* Generate masked wall request here */
     private MaskedWalletRequest generateMaskedWalletRequest() {
-        MaskedWalletRequest maskedWalletRequest =
-                MaskedWalletRequest.newBuilder()
+        return (MaskedWalletRequest.newBuilder()
                         .setMerchantName("Google I/O Codelab")
                         .setPhoneNumberRequired(true)
                         .setShippingAddressRequired(true)
@@ -192,14 +189,12 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
                                         .setTotalPrice("10.00")
                                         .build())
                                 .build())
-                        .build();
-
-        return maskedWalletRequest;
+                        .build());
     }
 
     /* Generate full wallet request here */
     private FullWalletRequest generateFullWalletRequest(String googleTransactionId) {
-        FullWalletRequest fullWalletRequest = FullWalletRequest.newBuilder()
+        return (FullWalletRequest.newBuilder()
                 .setGoogleTransactionId(googleTransactionId)
                 .setCart(Cart.newBuilder()
                         .setCurrencyCode("USD")
@@ -218,20 +213,25 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
                                 .setTotalPrice(".10")
                                 .build())
                         .build())
-                .build();
-        return fullWalletRequest;
+                .build());
+        //return fullWalletRequest;
     }
 
     /* Request full wallet */
     public void requestFullWallet(View view) {
         if (mGoogleApiClient.isConnected()){
-            Wallet.Payments.loadFullWallet(mGoogleApiClient,
-                    generateFullWalletRequest(mMaskedWallet.getGoogleTransactionId()),
-                    FULL_WALLET_REQUEST_CODE);
+            if(mMaskedWallet != null) {
+                Wallet.Payments.loadFullWallet(mGoogleApiClient,
+                        generateFullWalletRequest(mMaskedWallet.getGoogleTransactionId()),
+                        FULL_WALLET_REQUEST_CODE);
+            }
+            else{
+                Toast.makeText(this, "Google Wallet not found. Payment option setup to be done", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
-    /* Placeholders to override onconnect methods */
+    /* Placeholders to override on connect methods */
     @Override
     public void onConnected(Bundle bundle) {
 

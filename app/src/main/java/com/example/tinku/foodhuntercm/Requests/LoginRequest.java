@@ -6,9 +6,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by sandeep on 4/15/2016.
- */
 /* Login user request to server */
 public class LoginRequest extends StringRequest {
     private static final String LOGIN_REQUEST_URL = "http://www.nativebites.comxa.com/login.php";

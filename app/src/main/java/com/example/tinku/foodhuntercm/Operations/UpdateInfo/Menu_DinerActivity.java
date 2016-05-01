@@ -29,11 +29,6 @@ public class Menu_DinerActivity extends AppCompatActivity implements View.OnClic
         Search = (Button) findViewById(R.id.customsearch);
     }
 
-    public void init()
-    {
-        //Nothing to do
-    }
-
     /* On click of the view, jump to appropriate fragments */
     public void onClick(View v) {
         switch (v.getId()) {

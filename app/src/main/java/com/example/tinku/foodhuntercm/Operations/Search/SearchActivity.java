@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -53,7 +52,7 @@ public class SearchActivity extends ListActivity {
         final String food_type = intent.getStringExtra("food_type");
 
         /* List for populating search results */
-        list = new ArrayList<String>();
+        list = new ArrayList<>();
 
         /* Send the request to data base for getting the food item information */
         final Response.Listener<String> responseListener = new Response.Listener<String>(){
@@ -64,43 +63,38 @@ public class SearchActivity extends ListActivity {
                 try {
                     //Log.d(response.toString(), "onResponse: ");
                      jarry = new JSONArray(response);
-                     if (true)
-                     {
-                         //  Log.d(response.toString(), "onResponseeee: ");
-                         /* Iterate through the Json array for food items list */
-                         for (int i=0;i< jarry.length();i++)
-                         {
-                             JSONObject jobj= jarry.getJSONObject(i);
 
-                             /* Store the information from json response here */
-                             String price= jobj.getString("price");
-                             String location= jobj.getString("location");
-                             String food_type= jobj.getString("food_type");
-                             String food_desc= jobj.getString("food_description");
-                             String food_string= "$" + price +"\n"+  location + "\n" + food_type +"\n"+ food_desc;
 
-                             /* Form a food string and add it in list */
-                             list.add(food_string);
-                             //Log.d(list.get(i).toString(), "list item: ");
+                     //  Log.d(response.toString(), "onResponseeee: ");
+                     /* Iterate through the Json array for food items list */
+                     for (int i=0;i< jarry.length();i++) {
+                         JSONObject jobj = jarry.getJSONObject(i);
 
-                             /* Check the instance states here */
-                             if (xx != null) {
-                                 mStarStates = xx.getBooleanArray(STAR_STATES);
-                             } else {
-                                 mStarStates = new boolean[list.size()];
-                             }
+                         /* Store the information from json response here */
+                         String price = jobj.getString("price");
+                         String location = jobj.getString("location");
+                         String food_type = jobj.getString("food_type");
+                         String food_desc = jobj.getString("food_description");
+                         String food_string = "$" + price + "\n" + location + "\n" + food_type + "\n" + food_desc;
+
+                         /* Form a food string and add it in list */
+                         list.add(food_string);
+                         //Log.d(list.get(i).toString(), "list item: ");
+
+                         /* Check the instance states here */
+                         if (xx != null) {
+                             mStarStates = xx.getBooleanArray(STAR_STATES);
+                         } else {
+                             mStarStates = new boolean[list.size()];
                          }
                      }
-                     else
-                     {
-                         /* Create an alert that search activity failed */
-                         AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
-                         builder.setMessage("Search Failed")
-                                .setNegativeButton("Retry", null)
-                                .create()
-                                .show();
-                    }
                 } catch (JSONException e) {
+                    /* Create an alert that search activity failed */
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
+                    builder.setMessage("Search Failed")
+                            .setNegativeButton("Retry", null)
+                            .create()
+                            .show();
                     e.printStackTrace();
                 }
 
@@ -148,7 +142,7 @@ public class SearchActivity extends ListActivity {
         @Override
         public String getItem(int position) {
            // return CHEESES[position];
-            return list.get(position).toString();
+            return list.get(position);
         }
 
         @Override
@@ -163,7 +157,7 @@ public class SearchActivity extends ListActivity {
              * set the tag
              * If convert view is already present get the tag information
              */
-            AccessoriesViewHolder holder = null;
+            AccessoriesViewHolder holder;
             if (convertView == null)
             {
                 ListView framestub= (ListView)findViewById(R.id.list_view);
@@ -172,7 +166,7 @@ public class SearchActivity extends ListActivity {
                 holder.star = (CheckBox) convertView.findViewById(R.id.btn_star);
                 holder.star.setOnCheckedChangeListener(mStarCheckedChanceChangeListener);
                 holder.content = (TextView) convertView.findViewById(R.id.content);
-                ((Button) convertView.findViewById(R.id.btn_buy)).setOnClickListener(mBuyButtonClickListener);
+                ( convertView.findViewById(R.id.btn_buy)).setOnClickListener(mBuyButtonClickListener);
                 convertView.setTag(holder);
             } else {
                 holder = (AccessoriesViewHolder)convertView.getTag();
@@ -180,7 +174,7 @@ public class SearchActivity extends ListActivity {
 
             /* Holder to update stars information */
             holder.star.setChecked(mStarStates[position]);
-            holder.content.setText(list.get(position).toString());
+            holder.content.setText(list.get(position));
             return convertView;
         }
     }
@@ -198,7 +192,7 @@ public class SearchActivity extends ListActivity {
             final int position = getListView().getPositionForView(v);
             //Log.d(String.valueOf(position), "onClick: ");
             //Log.d(list.get(position).toString(), "list item: ");
-            String s=list.get(position).toString();
+            String s=list.get(position);
             String price=s.substring(s.indexOf("$") + 1, s.indexOf("\n"));
             //Log.d(price, ":price");
 
@@ -209,7 +203,7 @@ public class SearchActivity extends ListActivity {
             intent.putExtra("price",price);
             SearchActivity.this.startActivity(intent2);
             if (position != ListView.INVALID_POSITION) {
-                // showMessage(getString(R.string.you_want_to_buy_format, CHEESES[position]));
+                showMessage("Buy Format");
             }
         }
     };
