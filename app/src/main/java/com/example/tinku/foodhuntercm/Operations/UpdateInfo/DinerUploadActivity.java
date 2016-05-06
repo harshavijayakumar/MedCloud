@@ -25,6 +25,7 @@ public class DinerUploadActivity extends AppCompatActivity {
         /* Create layout of Diner upload screen */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diner_upload);
+        setTitle(R.string.app_name);
 
         /* Get the ids of the resources */
         final EditText location;

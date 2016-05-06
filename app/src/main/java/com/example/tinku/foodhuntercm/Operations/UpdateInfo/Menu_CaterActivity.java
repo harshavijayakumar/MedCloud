@@ -29,7 +29,9 @@ public class Menu_CaterActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         /* Set the content view to Cater menu */
         super.onCreate(savedInstanceState);
+        setTitle(R.string.app_name);
         setContentView(R.layout.menu_cater);
+
         Intent intent = getIntent();
         username= intent.getStringExtra("username");
         welcomemsg = welcomemsg+username;

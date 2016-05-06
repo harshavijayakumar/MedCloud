@@ -29,7 +29,10 @@ public class Menu_DinerActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
          /* Set the content view to Diner menu */
         super.onCreate(savedInstanceState);
+        setTitle(R.string.app_name);
         setContentView(R.layout.menu_diner);
+
+
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
 
