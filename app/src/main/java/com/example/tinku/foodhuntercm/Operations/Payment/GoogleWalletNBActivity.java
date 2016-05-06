@@ -2,6 +2,9 @@ package com.example.tinku.foodhuntercm.Operations.Payment;
 
 /* Import appropriate libraries */
 import com.example.tinku.foodhuntercm.*;
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
+import com.example.tinku.foodhuntercm.Operations.JoinCommunity.LoginActivity;
+import com.example.tinku.foodhuntercm.Operations.JoinCommunity.RegisterActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wallet.Cart;
@@ -28,6 +31,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -51,6 +56,8 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
         /* Get the price information passed from the intent */
         Intent intent = getIntent();
         price = intent.getStringExtra("price");
+
+
 
         /* Start building wallet fragment */
         mWalletFragment = (SupportWalletFragment) getSupportFragmentManager().findFragmentByTag(WALLET_FRAGMENT_ID);
@@ -90,6 +97,25 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
 
         /* Inflate the layout here */
         setContentView(R.layout.activity_google_wallet_nb);
+
+        try {
+            Button btnLogout  = (Button)findViewById(R.id.logout);
+            if(btnLogout == null){
+                throw  new AppException(1, "Missing information");
+            }
+
+            btnLogout.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                /* On click of register, start an Intent to switch to register user screen */
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
     }
 
 
@@ -119,9 +145,10 @@ public class GoogleWalletNBActivity extends AppCompatActivity implements GoogleA
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         FullWallet mFullWallet;
         /* Get the result of the activity here */
-        super.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode) {
+
+                switch (requestCode) {
             case MASKED_WALLET_REQUEST_CODE:
                 switch (resultCode) {
                     case Activity.RESULT_OK:

@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
+import com.example.tinku.foodhuntercm.Operations.JoinCommunity.LoginActivity;
 import com.example.tinku.foodhuntercm.R;
 
 /* Menu options screen for cater user */
@@ -27,6 +30,25 @@ public class Menu_CaterActivity extends AppCompatActivity implements View.OnClic
         Aboutus = (Button)findViewById(R.id.aboutus);
         Updateinfo = (Button) findViewById(R.id.updateinfo);
         Search = (Button) findViewById(R.id.customsearch);
+
+        try {
+            Button btnLogout  = (Button)findViewById(R.id.logout);
+            if(btnLogout == null){
+                throw  new AppException(1, "Missing information");
+            }
+
+            btnLogout.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                /* On click of register, start an Intent to switch to register user screen */
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
     }
 
     /* On click of the view, jump to appropriate fragments */

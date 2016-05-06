@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
+import com.example.tinku.foodhuntercm.Operations.JoinCommunity.LoginActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.adapter.BuildEntity;
 import android.widget.CheckBox;
@@ -131,6 +134,24 @@ public class CaterUploadActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
 
+        try {
+            Button btnLogout  = (Button)findViewById(R.id.logout);
+            if(btnLogout == null){
+                throw  new AppException(1, "Missing information");
+            }
+
+            btnLogout.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                /* On click of register, start an Intent to switch to register user screen */
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
 
         /* Listen to cater update button */
         btnCaterUpdate.setOnClickListener(new View.OnClickListener() {
@@ -144,14 +165,18 @@ public class CaterUploadActivity extends AppCompatActivity {
                 final int caterContact = Integer.parseInt(contactNumber.getText().toString());
                 final String caterName=username;
 
-                if(american.isChecked())
-                    foodtype=foodtype+"/1";
-                if(indian.isChecked())
-                    foodtype=foodtype+"/2";
-                if (thai.isChecked())
-                    foodtype=foodtype+"/3";
-                if (chinese.isChecked())
-                    foodtype=foodtype+"/4";
+                if (american.isChecked()) {
+                    foodtype="American";
+                }
+                if (indian.isChecked()) {
+                    foodtype="Indian";
+                }
+                if (thai.isChecked()) {
+                    foodtype="Thai";
+                }
+                if (chinese.isChecked()) {
+                    foodtype="Chinese";
+                }
 
                 Intent intent = getIntent();
                 final String username = intent.getStringExtra("username");
@@ -183,6 +208,8 @@ public class CaterUploadActivity extends AppCompatActivity {
               }
             }
         });
+
+
     }
 
     /* On Gallery activity result, check the result code and set the image view in the screen */

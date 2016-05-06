@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
+import com.example.tinku.foodhuntercm.Operations.JoinCommunity.LoginActivity;
 import com.example.tinku.foodhuntercm.R;
 import com.example.tinku.foodhuntercm.adapter.BuildEntity;
 
@@ -51,6 +54,26 @@ public class DinerUploadActivity extends AppCompatActivity {
                 usr.updateDinerInfo(username, dinerLocation, dinerContact, getApplicationContext());
             }
         });
+
+
+        try {
+            Button btnLogout  = (Button)findViewById(R.id.logout);
+            if(btnLogout == null){
+                throw  new AppException(1, "Missing information");
+            }
+
+            btnLogout.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                /* On click of register, start an Intent to switch to register user screen */
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+            });
+        }
+        catch(AppException e){
+            e.genericexceptionfix();
+        }
     }
 
     /* On Start and On stop methods */

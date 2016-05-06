@@ -27,7 +27,7 @@
         android:text="ABOUT US"
         android:onClick="onClick"
         android:id="@+id/aboutus"
-        android:layout_above="@+id/customsearch"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
 
@@ -39,9 +39,8 @@
         android:text="Custom Search"
         android:id="@+id/customsearch"
         android:onClick="onClick"
-        android:layout_below="@+id/updateinfo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
+        android:layout_above="@+id/scrollView2"
+        android:layout_centerHorizontal="true" />
 
 
     <ScrollView
@@ -81,5 +80,13 @@
         android:layout_below="@+id/scrollView2"
         android:layout_alignParentStart="true" >
     </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout"
+        android:layout_below="@+id/aboutus"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
