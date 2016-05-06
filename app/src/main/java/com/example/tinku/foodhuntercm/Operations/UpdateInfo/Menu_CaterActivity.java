@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +14,16 @@ import com.example.tinku.foodhuntercm.Exceptions.AppException;
 import com.example.tinku.foodhuntercm.Operations.JoinCommunity.LoginActivity;
 import com.example.tinku.foodhuntercm.R;
 
+import java.util.Locale;
+
 /* Menu options screen for cater user */
 public class Menu_CaterActivity extends AppCompatActivity implements View.OnClickListener {
 
     /* Variables for handling menu cater activity */
     String username;
     Button Aboutus, Updateinfo, Search;
+    TextToSpeech ttsobject;
+    String welcomemsg = "Welcome to NativeBites ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,18 @@ public class Menu_CaterActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.menu_cater);
         Intent intent = getIntent();
         username= intent.getStringExtra("username");
+        welcomemsg = welcomemsg+username;
+
+        ttsobject = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener(){
+            @Override
+            public void onInit(int status){
+                if(status == TextToSpeech.SUCCESS){
+                    ttsobject.setLanguage(Locale.US);
+                    ttsobject.speak(welcomemsg, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
         Aboutus = (Button)findViewById(R.id.aboutus);
         Updateinfo = (Button) findViewById(R.id.updateinfo);
         Search = (Button) findViewById(R.id.customsearch);
