@@ -65,4 +65,4 @@ The server database shall have two tables
 
 2)food table:- This will be used to store food information. 
   It has fileds like price, location, username, food_type, food_description, imageloc, contact, status
-  
+  # MedCloud
