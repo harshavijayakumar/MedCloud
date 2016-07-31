@@ -67,3 +67,4 @@ The server database shall have two tables
   It has fileds like price, location, username, food_type, food_description, imageloc, contact, status
   # MedCloud
 # MedCloud
+# MedCloud
