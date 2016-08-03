@@ -27,10 +27,10 @@ public abstract class ProxyLayer {
 
 
     /* Register user operation */
-    public void addreminder( String username, String password, String email, String type, Context registerContext){
+    public void addreminder( String username, String pillname,String password, String email, String type, Context registerContext){
         User usrObj;
         usrObj = new User();
-        usrObj.setUserRegisterInfo(username, password, email, type);
+        usrObj.setUserRegisterInfo(username,pillname, password, email, type);
         final Context lclContext = registerContext;
         final String usrname = username;
         final String usrtype = type;
@@ -44,12 +44,12 @@ public abstract class ProxyLayer {
                     JSONObject jsonResponse = new JSONObject(response);
                     result = jsonResponse.getBoolean("success");
                     if(result){
-
+/*
                         Intent intent = new Intent(lclContext, SearchActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("username", usrname);
                         lclContext.startActivity(intent);
-
+*/
                         /* if(usrtype.equals("Diner")) {
                             Intent intent = new Intent(lclContext, Menu_DinerActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -80,7 +80,7 @@ public abstract class ProxyLayer {
         };
 
         /* Add the HTTP request to queue and send to server */
-        RegisterRequest registerRequest = new RegisterRequest(usrObj, responseListener);
+        AddReminder registerRequest = new AddReminder(usrObj, responseListener);
         RequestQueue queue = Volley.newRequestQueue(lclContext);
         queue.add(registerRequest);
     }
@@ -91,7 +91,7 @@ public abstract class ProxyLayer {
 	public void registerUser(String username, String password, String email, String type, Context registerContext){
         User usrObj;
         usrObj = new User();
-		usrObj.setUserRegisterInfo(username, password, email, type);
+		usrObj.setUserRegisterInfo2(username, password, email, type);
         final Context lclContext = registerContext;
         final String usrname = username;
         final String usrtype = type;
@@ -141,7 +141,7 @@ public abstract class ProxyLayer {
         };
 
         /* Add the HTTP request to queue and send to server */
-        AddReminder registerRequest = new AddReminder(usrObj, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(usrObj, responseListener);
         RequestQueue queue = Volley.newRequestQueue(lclContext);
         queue.add(registerRequest);
 	}

@@ -36,6 +36,9 @@ public class SearchOptionFragment extends Fragment {
         final RadioButton rbc= (RadioButton)v.findViewById(R.id.chinese);
         */
         final EditText edx=(EditText)v.findViewById(R.id.editText6);
+        final Spinner mySpinner=(Spinner) v.findViewById(R.id.spinner2);
+        final Spinner mySpinner2=(Spinner) v.findViewById(R.id.spinner3);
+        final Spinner mySpinner3=(Spinner) v.findViewById(R.id.spinner4);
 
 
         search = (Button)v.findViewById(R.id.searchbutton);
@@ -52,8 +55,11 @@ public class SearchOptionFragment extends Fragment {
                 boolean thai= rbt.isChecked();
                 boolean chinese = rbc.isChecked();
                 */
+
+
                 final String pillname = edx.getText().toString();
-                Spinner mySpinner=(Spinner) v.findViewById(R.id.spinner2);
+
+
                 if(mySpinner == null){
                     try {
                         throw  new AppException(1, "Missing spinner information");
@@ -61,12 +67,14 @@ public class SearchOptionFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
+
+
                 TextView textView = (TextView)mySpinner.getSelectedView();
                 final String spinnerType1 = textView.getText().toString();
 
 
-                Spinner mySpinner2=(Spinner) v.findViewById(R.id.spinner3);
-                if(mySpinner == null){
+
+                if(mySpinner2 == null){
                     try {
                         throw  new AppException(1, "Missing spinner information");
                     } catch (AppException e) {
@@ -74,11 +82,11 @@ public class SearchOptionFragment extends Fragment {
                     }
                 }
                 TextView textView2 = (TextView)mySpinner2.getSelectedView();
-                final String spinnerType2 = textView.getText().toString();
+                final String spinnerType2 = textView2.getText().toString();
 
 
-                Spinner mySpinner3=(Spinner) v.findViewById(R.id.spinner4);
-                if(mySpinner == null){
+
+                if(mySpinner3 == null){
                     try {
                         throw  new AppException(1, "Missing spinner information");
                     } catch (AppException e) {
@@ -86,13 +94,10 @@ public class SearchOptionFragment extends Fragment {
                     }
                 }
                 TextView textView3 = (TextView)mySpinner3.getSelectedView();
-                final String spinnerType3 = textView.getText().toString();
+                final String spinnerType3 = textView3.getText().toString();
 
 
-
-                     /*
-
-                if (american) {
+              /*  if (american) {
                     foodtype="American";
                 }
                 if (indian) {
@@ -105,7 +110,7 @@ public class SearchOptionFragment extends Fragment {
                     foodtype="Chinese";
                 }
 
-                /* Get the username from the bundle */
+                Get the username from the bundle */
                 Bundle bundle= getArguments();
                 String username=bundle.getString("username");
 
@@ -119,7 +124,7 @@ public class SearchOptionFragment extends Fragment {
 
 
                 BuildEntity usr = new BuildEntity();
-                usr.addreminder(pillname,spinnerType1,spinnerType2,spinnerType3,getContext());
+                usr.addreminder(username,pillname,spinnerType1,spinnerType2,spinnerType3,getContext());
             }
         });
         return v;

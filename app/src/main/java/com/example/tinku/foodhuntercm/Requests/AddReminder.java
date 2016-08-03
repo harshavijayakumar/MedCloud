@@ -9,13 +9,14 @@ import java.util.Map;
 
 /* Register user request to server */
 public class AddReminder extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://104.155.175.65/register.php";
+    private static final String REGISTER_REQUEST_URL = "http://104.155.175.65/reminder.php";
     private Map<String, String> params;
 
     /* Form the params and send the POST request to server */
     public AddReminder(User userObj,  Response.Listener<String> listener){
         super(Method.POST, REGISTER_REQUEST_URL,listener,null);
         params = new HashMap<>();
+        params.put("pillname",userObj.getUserPillname());
         params.put("username",userObj.getUsername());
         params.put("password",userObj.getPassword());
         params.put("email",userObj.getUserEmail());

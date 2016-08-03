@@ -78,7 +78,8 @@
         android:entries="@array/year_arrays2"
         android:prompt="@string/year_prompt"
         android:layout_below="@+id/spinner2"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignEnd="@+id/searchbutton"
+        android:layout_alignStart="@+id/searchbutton" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
         android:id="@+id/spinner4"
         android:entries="@array/year_arrays3"
         android:prompt="@string/year_prompt"
-        android:layout_below="@+id/spinner3"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignTop="@+id/spinner3"
+        android:layout_toEndOf="@+id/spinner3" />
 
 </RelativeLayout>
