@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#009688"
     tools:context=".Operations.JoinCommunity.LoginActivity">
 
     <ImageView android:id="@+id/imageview"
@@ -28,7 +29,8 @@
             <!-- Full Name Label -->
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#372c24"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
                 android:text="Full Name"/>
             <EditText android:id="@+id/reg_fullname"
                 android:layout_width="fill_parent"
@@ -39,7 +41,8 @@
             <!--  Email Label -->
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#372c24"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
                 android:text="Email"/>
             <EditText android:id="@+id/reg_email"
                 android:layout_width="fill_parent"
@@ -50,7 +53,8 @@
             <!-- Password Label -->
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#372c24"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
                 android:text="Password"/>
             <EditText android:id="@+id/reg_password"
                 android:layout_width="fill_parent"
@@ -58,10 +62,15 @@
                 android:password="true"
                 android:singleLine="true"
                 android:layout_marginTop="3dip"/>
-
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:text="Age"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:id="@+id/spinner2"
                 android:layout_gravity="right"
                 android:entries="@array/year_arrays"

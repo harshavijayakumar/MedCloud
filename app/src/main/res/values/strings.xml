@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NBite</string>
+    <string name="app_name">MedCloud</string>
     <string name="title_activity_menu__cater">Menu_CaterActivity</string>
     <string name="title_activity_menu__diner">Menu_DinerActivity</string>
     <string name="action_settings">Settings</string>

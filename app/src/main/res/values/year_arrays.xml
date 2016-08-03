@@ -5,9 +5,40 @@
     <string name="year_prompt">Choose a country</string>
 
     <string-array name="year_arrays">
-        <item>Diner</item>
-        <item>Cater</item>
+        <item>18-30</item>
+        <item>31-40</item>
+        <item>41-50</item>
+        <item>51-60</item>
+        <item>61-70</item>
+        <item>71+</item>
 
     </string-array>
 
+    <string-array name="year_arrays1">
+        <item>Daily</item>
+        <item>Weekly</item>
+
+    </string-array>
+
+
+    <string-array name="year_arrays2">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="year_arrays3">
+        <item>am</item>
+        <item>pm</item>
+
+    </string-array>
 </resources>

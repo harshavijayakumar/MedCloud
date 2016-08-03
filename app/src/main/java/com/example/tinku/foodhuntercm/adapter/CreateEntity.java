@@ -7,4 +7,5 @@ import android.content.Context;
 public interface CreateEntity {
     public void registerUser(String username, String password, String email, String type, Context registerContext);
     public void loginUser(String username, String password,Context loginContext);
+    public void addreminder(String username, String schedule,String time,String day,Context loginContext);
 }

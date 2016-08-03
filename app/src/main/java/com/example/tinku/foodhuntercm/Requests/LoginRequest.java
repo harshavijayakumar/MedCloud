@@ -8,7 +8,7 @@ import java.util.Map;
 
 /* Login user request to server */
 public class LoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL = "http://www.nativebites.comxa.com/login.php";
+    private static final String LOGIN_REQUEST_URL = "http://104.155.175.65/login.php";
     private Map<String, String> params;
 
     /* Form the params and send the POST request to server */
@@ -25,3 +25,5 @@ public class LoginRequest extends StringRequest {
     }
 
 }
+
+

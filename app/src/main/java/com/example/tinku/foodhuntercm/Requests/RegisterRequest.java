@@ -9,7 +9,7 @@ import java.util.Map;
 
 /* Register user request to server */
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://www.nativebites.comxa.com/register.php";
+    private static final String REGISTER_REQUEST_URL = "http://104.155.175.65/register.php";
     private Map<String, String> params;
 
     /* Form the params and send the POST request to server */

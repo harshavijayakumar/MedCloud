@@ -8,8 +8,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.tinku.foodhuntercm.Entities.User;
+import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
 import com.example.tinku.foodhuntercm.Operations.UpdateInfo.Menu_CaterActivity;
 import com.example.tinku.foodhuntercm.Operations.UpdateInfo.Menu_DinerActivity;
+import com.example.tinku.foodhuntercm.Requests.AddReminder;
 import com.example.tinku.foodhuntercm.Requests.CaterUploadRequest;
 import com.example.tinku.foodhuntercm.Requests.DinerUploadRequest;
 import com.example.tinku.foodhuntercm.Requests.LoginRequest;
@@ -22,6 +24,68 @@ public abstract class ProxyLayer {
 
     /* Variable for handling different operations of the application */
     private boolean result;
+
+
+    /* Register user operation */
+    public void addreminder( String username, String password, String email, String type, Context registerContext){
+        User usrObj;
+        usrObj = new User();
+        usrObj.setUserRegisterInfo(username, password, email, type);
+        final Context lclContext = registerContext;
+        final String usrname = username;
+        final String usrtype = type;
+
+        /* Send the request to the server */
+        Response.Listener<String> responseListener = new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response) {
+                /* Up on response, jump to menu page based on the user(cater/diner) */
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    result = jsonResponse.getBoolean("success");
+                    if(result){
+
+                        Intent intent = new Intent(lclContext, SearchActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("username", usrname);
+                        lclContext.startActivity(intent);
+
+                        /* if(usrtype.equals("Diner")) {
+                            Intent intent = new Intent(lclContext, Menu_DinerActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("username", usrname);
+                            lclContext.startActivity(intent);
+                        }
+                        if(usrtype.equals("Cater")) {
+                            Intent intent = new Intent(lclContext, Menu_CaterActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("username", usrname);
+                            lclContext.startActivity(intent);
+                        }
+                        */
+                    }
+
+                    else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(lclContext);
+                        builder.setMessage("Register Failed")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                    }
+
+                } catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        /* Add the HTTP request to queue and send to server */
+        RegisterRequest registerRequest = new RegisterRequest(usrObj, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(lclContext);
+        queue.add(registerRequest);
+    }
+
+
 
     /* Register user operation */
 	public void registerUser(String username, String password, String email, String type, Context registerContext){
@@ -41,7 +105,13 @@ public abstract class ProxyLayer {
                     JSONObject jsonResponse = new JSONObject(response);
                     result = jsonResponse.getBoolean("success");
                     if(result){
-                        if(usrtype.equals("Diner")) {
+
+                            Intent intent = new Intent(lclContext, Menu_DinerActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("username", usrname);
+                            lclContext.startActivity(intent);
+
+                        /* if(usrtype.equals("Diner")) {
                             Intent intent = new Intent(lclContext, Menu_DinerActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("username", usrname);
@@ -53,14 +123,16 @@ public abstract class ProxyLayer {
                             intent.putExtra("username", usrname);
                             lclContext.startActivity(intent);
                         }
+                        */
                     }
+
                     else{
-                        AlertDialog.Builder builder = new AlertDialog.Builder(lclContext);
-                        builder.setMessage("Register Failed")
-                                .setNegativeButton("Retry", null)
-                                .create()
-                                .show();
-                    }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(lclContext);
+                            builder.setMessage("Register Failed")
+                                    .setNegativeButton("Retry", null)
+                                    .create()
+                                    .show();
+                        }
 
                 } catch(JSONException e){
                     e.printStackTrace();
@@ -69,7 +141,7 @@ public abstract class ProxyLayer {
         };
 
         /* Add the HTTP request to queue and send to server */
-        RegisterRequest registerRequest = new RegisterRequest(usrObj, responseListener);
+        AddReminder registerRequest = new AddReminder(usrObj, responseListener);
         RequestQueue queue = Volley.newRequestQueue(lclContext);
         queue.add(registerRequest);
 	}
@@ -89,7 +161,7 @@ public abstract class ProxyLayer {
                     boolean success = jsonResponse.getBoolean("success");
                     String type = jsonResponse.getString("user");
                     if (success) {
-                        if (type.equals("Diner")) {
+                       /* if (type.equals("Diner")) {
                             Intent intent = new Intent(lclCtxt, Menu_DinerActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("username", usrname);
@@ -100,6 +172,14 @@ public abstract class ProxyLayer {
                             intent.putExtra("username", usrname);
                             lclCtxt.startActivity(intent);
                         }
+                        */
+
+
+                        Intent intent = new Intent(lclCtxt, Menu_DinerActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("username", usrname);
+                        lclCtxt.startActivity(intent);
+
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(lclCtxt);
                         builder.setMessage("Login Failed")

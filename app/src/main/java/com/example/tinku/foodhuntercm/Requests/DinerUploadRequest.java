@@ -8,7 +8,7 @@ import java.util.Map;
 
 /* Diner upload request to server */
 public class DinerUploadRequest extends StringRequest {
-    private static final String DINERUPLOAD_REQUEST_URL = "http://www.nativebites.comxa.com/dinerupload.php";
+    private static final String DINERUPLOAD_REQUEST_URL = "http://104.155.175.65/dinerupload.php";
     private Map<String, String> params;
 
     /* Form the params and send the POST request to server */

@@ -1,16 +1,22 @@
 package com.example.tinku.foodhuntercm.Operations.UpdateInfo;
 
 /* Import appropriate libraries */
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.tinku.foodhuntercm.Exceptions.AppException;
 import com.example.tinku.foodhuntercm.Operations.Search.SearchActivity;
 import com.example.tinku.foodhuntercm.R;
+import com.example.tinku.foodhuntercm.adapter.BuildEntity;
+
 import android.widget.*;
 
 /* Fragment for showing search options on the screen */
@@ -21,21 +27,70 @@ public class SearchOptionFragment extends Fragment {
         View v = inflater.inflate(R.layout.searchoptions, container, false);
 
         /* Get the appropriate resources here */
+
+/*
         final RadioButton rba= (RadioButton)v.findViewById(R.id.american);
-        search = (Button)v.findViewById(R.id.searchbutton);
+
         final RadioButton rbi= (RadioButton)v.findViewById(R.id.indian);
         final RadioButton rbt= (RadioButton)v.findViewById(R.id.thai);
         final RadioButton rbc= (RadioButton)v.findViewById(R.id.chinese);
+        */
+        final EditText edx=(EditText)v.findViewById(R.id.editText6);
+
+
+        search = (Button)v.findViewById(R.id.searchbutton);
 
         /* Listen to click on search button */
         search.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.M)
             public void onClick(View v) {
                 /* On click, set the food type and send it via intent */
                 String foodtype = null;
+             /*
                 boolean american= rba.isChecked();
                 boolean indian= rbi.isChecked();
                 boolean thai= rbt.isChecked();
                 boolean chinese = rbc.isChecked();
+                */
+                final String pillname = edx.getText().toString();
+                Spinner mySpinner=(Spinner) v.findViewById(R.id.spinner2);
+                if(mySpinner == null){
+                    try {
+                        throw  new AppException(1, "Missing spinner information");
+                    } catch (AppException e) {
+                        e.printStackTrace();
+                    }
+                }
+                TextView textView = (TextView)mySpinner.getSelectedView();
+                final String spinnerType1 = textView.getText().toString();
+
+
+                Spinner mySpinner2=(Spinner) v.findViewById(R.id.spinner3);
+                if(mySpinner == null){
+                    try {
+                        throw  new AppException(1, "Missing spinner information");
+                    } catch (AppException e) {
+                        e.printStackTrace();
+                    }
+                }
+                TextView textView2 = (TextView)mySpinner2.getSelectedView();
+                final String spinnerType2 = textView.getText().toString();
+
+
+                Spinner mySpinner3=(Spinner) v.findViewById(R.id.spinner4);
+                if(mySpinner == null){
+                    try {
+                        throw  new AppException(1, "Missing spinner information");
+                    } catch (AppException e) {
+                        e.printStackTrace();
+                    }
+                }
+                TextView textView3 = (TextView)mySpinner3.getSelectedView();
+                final String spinnerType3 = textView.getText().toString();
+
+
+
+                     /*
 
                 if (american) {
                     foodtype="American";
@@ -55,10 +110,16 @@ public class SearchOptionFragment extends Fragment {
                 String username=bundle.getString("username");
 
                 /* Start an intent to switch to search activity screen */
+                /*
                 Intent intent = new Intent(getActivity(),SearchActivity.class);
                 intent.putExtra("username", username);
                 intent.putExtra("food_type",foodtype);
                 startActivity(intent);
+                */
+
+
+                BuildEntity usr = new BuildEntity();
+                usr.addreminder(pillname,spinnerType1,spinnerType2,spinnerType3,getContext());
             }
         });
         return v;

@@ -24,7 +24,7 @@ public class Menu_DinerActivity extends AppCompatActivity implements View.OnClic
     Button Aboutus,Updateinfo, Search;
     String username;
     TextToSpeech ttsobject;
-    String welcomemsg = "Welcome to NativeBites ";
+    String welcomemsg = "Welcome to MedCloud";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
          /* Set the content view to Diner menu */
